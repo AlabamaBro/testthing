@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Constraint implements BiPredicate<VillagerLike<?>, ServerPlayerEntity> {
-    FAMILY("family", Relationship.IS_FAMILY.asConstraint()),
     NOT_FAMILY("!family", Relationship.IS_FAMILY.negate().asConstraint()),
 
     BABY("baby", (villager, player) -> villager.getAgeState() == AgeState.BABY),
@@ -38,19 +37,14 @@ public enum Constraint implements BiPredicate<VillagerLike<?>, ServerPlayerEntit
     ADULT("adult", (villager, player) -> villager.getAgeState() == AgeState.ADULT),
     NOT_ADULT("!adult", (villager, player) -> villager.getAgeState() != AgeState.ADULT),
 
-    SPOUSE("spouse", Relationship.IS_MARRIED.asConstraint()),
     NOT_SPOUSE("!spouse", Relationship.IS_MARRIED.negate().asConstraint()),
 
-    ENGAGED("engaged", Relationship.IS_ENGAGED.asConstraint()),
     NOT_ENGAGED("!engaged", Relationship.IS_ENGAGED.negate().asConstraint()),
 
-    PROMISED("promised", Relationship.IS_PROMISED.asConstraint()),
     NOT_PROMISED("!promised", Relationship.IS_PROMISED.negate().asConstraint()),
 
-    KIDS("kids", Relationship.IS_PARENT.asConstraint()),
     NOT_KIDS("!kids", Relationship.IS_PARENT.negate().asConstraint()),
 
-    PARENT("parent", Relationship.IS_KID.asConstraint()),
     NOT_PARENT("!parent", Relationship.IS_KID.negate().asConstraint()),
 
     CLERIC("cleric", (villager, player) -> villager.getVillagerData().getProfession() == VillagerProfession.CLERIC),
